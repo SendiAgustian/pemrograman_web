@@ -1,7 +1,11 @@
 <?php
 include_once '../querys/connect.php';
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: login/index.php");
+}
 $result = mysqli_query($conn, "SELECT * FROM tb_contents");
-// echo $result;
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,7 +19,6 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
     <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Favicons -->
@@ -35,14 +38,14 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="../">Menu</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="../">HOME</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="../index.php">Sign out</a>
+                <a class="nav-link" href="login/auth/logout.php">Sign out</a>
             </li>
         </ul>
     </nav>
@@ -63,7 +66,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <h2>Contents</h2>
+                <h2>Contents <a href="add_content.php" class="btn btn-primary">Tambah</a></h2>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead>
@@ -72,6 +75,9 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
                                 <th>Title</th>
                                 <th>Content</th>
                                 <th>Cover</th>
+                                <th>
+                                    <center>Action</center>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,6 +90,34 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
                                     <td><?php echo $row["title"]; ?></td>
                                     <td><?php echo $row["content"]; ?></td>
                                     <td><?php echo $row["cover"]; ?></td>
+                                    <td>
+                                        <center>
+                                            <a href="edit_content.php?id=<?php echo $row["id"]; ?>" class="btn btn-success">EDIT</a> |
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                                HAPUS
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi <strong>HAPUS</strong></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Anda yakin akan menghapus konten ini?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                            <a href="../querys/delete.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger">HAPUS</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    </td>
                                 </tr>
                             <?php
                                 $i++;
@@ -104,12 +138,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
     </div>
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')
-    </script>
-    <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 

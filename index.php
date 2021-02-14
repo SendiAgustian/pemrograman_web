@@ -1,7 +1,6 @@
 <?php
 include_once 'querys/connect.php';
 $result = mysqli_query($conn, "SELECT * FROM tb_contents");
-// echo $result;
 ?>
 <!doctype html>
 <html lang="en">
@@ -11,7 +10,9 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
+
+  <!-- Bootstrap core CSS -->
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
   <!-- My CSS -->
@@ -90,8 +91,8 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
         </div>
         <div class="col">
           <h3><?php echo $row["title"]; ?></h3>
-          <p><?php echo $row["content"]; ?></p>
-          <a href="galery.php" class="btn btn-primary tombol">gallery</a>
+          <p><?php echo substr($row["content"], 0, 150); ?>...</p>
+          <a href="detail.php?id=<?php echo $row["id"]; ?>" class="btn btn-primary tombol">Selengkapnya</a>
         </div>
       </div>
     <?php
@@ -111,17 +112,17 @@ $result = mysqli_query($conn, "SELECT * FROM tb_contents");
       <div class="row justify-content-center">
         <div class="col-lg-6 d-flex justify-content-center">
           <figure class="figure">
-            <img src="img/img1.png" class="figure-img img-fluid rounded-circle" alt="testi 1">
+            <img src="img/user2.png" class="figure-img img-fluid rounded-circle" alt="testi 1">
           </figure>
           <figure class="figure">
-            <img src="img/img2.png" class="figure-img img-fluid rounded-circle active" alt="testi 2">
+            <img src="img/user1.png" class="figure-img img-fluid rounded-circle active" alt="testi 2">
             <figcaption class="figure-caption">
-              <h5>Shanny Ye</h5>
-              <p>Designer</p>
+              <h5>Sendi Agustian</h5>
+              <p>Full Stack Programmer</p>
             </figcaption>
           </figure>
           <figure class="figure">
-            <img src="img/img3.png" class="figure-img img-fluid rounded-circle" alt="testi 3">
+            <img src="img/user3.png" class="figure-img img-fluid rounded-circle" alt="testi 3">
           </figure>
         </div>
       </div>

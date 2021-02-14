@@ -4,15 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
-  <title>Login</title>
+  <title>Sign Up</title>
 
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
   <!-- Bootstrap core CSS -->
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
   <!-- My CSS -->
   <link href="../../css/auth.css" rel="stylesheet">
@@ -27,23 +28,20 @@
   <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#563d7c">
 
-  <!-- Javascript -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 
 <body class="text-center">
-  <!-- <form class="form-signin" action="validasi()"> -->
-  <form class="form-signin" action="auth/auth.php" method="post" id="myForm">
-    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+  <form class="form-signin" action="../index.php">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+    <label for="inputEmail" class="sr-only">Name</label>
+    <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input name="email" id="email" type="email" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input name="password" id="password" type="password" class="form-control" placeholder="Password" required>
-    <div class="mb-3">
-      <span>Belum memiliki akun? <a href="signup.php">Sign Up</a></span>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <!-- Footer -->
     <div class="row footer">
       <div class="col text-center">
@@ -52,20 +50,6 @@
     </div>
     <!-- Akhir Footer -->
   </form>
-
 </body>
-
-<!-- <script type="text/javascript">
-  function validasi() {
-    var email = document.forms["myForm"]["email"].value;
-    var password = document.forms["myForm"]["password"].value;
-    if (email == "admin@email.com" && password == "123") {
-      return true;
-    } else {
-      alert("Username atau password yang Anda masukan SALAH");
-      return false;
-    }
-  }
-</script> -->
 
 </html>
